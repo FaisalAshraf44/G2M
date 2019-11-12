@@ -67,13 +67,13 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   headerContainer: {
-    flex: 0.35,
+    flex: 0.3,
   },
   card: {
     width: wp(30),
     height: hp(45),
     position: 'absolute',
-    top: hp(20),
+    top: hp(15),
     alignSelf: 'center',
   },
   title: {

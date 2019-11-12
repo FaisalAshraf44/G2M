@@ -40,6 +40,6 @@ export default createAppContainer(
       Auth: Auth,
       App: App,
     },
-    {initialRouteName: 'App'},
+    {initialRouteName: 'Auth'},
   ),
 );
