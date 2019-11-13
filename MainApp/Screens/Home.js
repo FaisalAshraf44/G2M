@@ -7,14 +7,22 @@ import {
 
 import CustomHeader from '../Components/Header';
 import GenericButton from '../Components/GenericBtn';
+import IDExtendedList from '../Components/IDExtendedList';
 import IdList from '../Components/IdList';
+import Notes from '../Components/Notes';
 import PhaseCard from '../Components/PhaseCard';
 
 export default class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      extendedList: false,
+    };
   }
+
+  ExtendedList = () => {
+    this.setState({extendedList: true});
+  };
 
   render() {
     return (
@@ -42,14 +50,33 @@ export default class Home extends Component {
             />
           </View>
         </View>
-        <View style={styles.phaseCardsContainer}>
-          <PhaseCard title={'Furniture, IT and equipment'} />
-          <PhaseCard title={'Logistics and tenders'} />
-          <PhaseCard title={'Relocation finale'} />
-        </View>
-        <View style={{flex: 0.59}}>
-          <IdList />
-        </View>
+        {this.state.extendedList
+          ? [
+              <View
+                style={{
+                  flexDirection: 'row',
+                  flex: 1,
+                  position: 'absolute',
+                  marginTop: hp(12),
+                }}>
+                <IDExtendedList />
+              </View>,
+            ]
+          : [
+              <>
+                <View style={styles.phaseCardsContainer}>
+                  <PhaseCard title={'Furniture, IT and equipment'} />
+                  <PhaseCard title={'Logistics and tenders'} />
+                  <PhaseCard title={'Relocation finale'} />
+                </View>
+                <View style={{flexDirection: 'row', flex: 0.59}}>
+                  <View style={{width: '66.7%'}}>
+                    <IdList onPress={this.ExtendedList} />
+                  </View>
+                  <Notes />
+                </View>
+              </>,
+            ]}
       </View>
     );
   }
@@ -71,3 +98,14 @@ const styles = StyleSheet.create({
     marginTop: hp(10),
   },
 });
+
+/////////////// extended list ////////
+// <View
+//   style={{
+//     flexDirection: 'row',
+//     flex: 1,
+//     position: 'absolute',
+//     marginTop: hp(12),
+//   }}>
+//   <IDExtendedList />
+// </View>

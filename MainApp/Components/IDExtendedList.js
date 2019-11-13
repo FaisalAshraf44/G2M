@@ -6,14 +6,17 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from '../Helpers/Responsive';
 
 import {Card} from 'react-native-elements';
-import IdListRow from './IdListRow';
-import {heightPercentageToDP as hp} from '../Helpers/Responsive';
+import IDExtendedListRow from './IDExtendedListRow';
 
-const listItems = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}];
+const listItems = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}];
 
-const IdList = props => {
+const IDExttendedList = props => {
   return (
     <Card containerStyle={styles.container}>
       <View
@@ -24,7 +27,7 @@ const IdList = props => {
           marginBottom: 5,
         }}>
         <Text style={styles.title}>ID List</Text>
-        <TouchableOpacity style={styles.listBtn} onPress={props.onPress}>
+        <TouchableOpacity style={styles.listBtn}>
           <Text style={{color: 'white'}}>GO TO ID list</Text>
         </TouchableOpacity>
       </View>
@@ -44,14 +47,30 @@ const IdList = props => {
         <View style={{flex: 0.1}}>
           <Text style={styles.colName}>ROOM</Text>
         </View>
-        <View style={{flex: 0.1}}>
+        <View style={{flex: 0.1, marginLeft: 5}}>
           <Text style={styles.colName}>GRID</Text>
         </View>
+        <View style={{flex: 0.2}}>
+          <Text style={styles.colName}>NEW BUILDING</Text>
+        </View>
+        <View style={{flex: 0.1}}>
+          <Text style={styles.colName}>NEW FLOOR</Text>
+        </View>
+        <View style={{flex: 0.1}}>
+          <Text style={styles.colName}>NEW ROOM</Text>
+        </View>
+        <View style={{flex: 0.1}}>
+          <Text style={styles.colName}>NEW GRID</Text>
+        </View>
+        <View style={{width: wp(9)}}></View>
       </View>
-      <ScrollView style={{marginHorizontal: -16, height: hp(40)}}>
+      <ScrollView style={{marginHorizontal: -16, height: hp(67)}}>
         {listItems.map((item, key) => {
           return (
-            <IdListRow key={key} color={key % 2 == 0 ? '#DADADA' : 'white'} />
+            <IDExtendedListRow
+              key={key}
+              color={key % 2 == 0 ? '#DADADA' : 'white'}
+            />
           );
         })}
       </ScrollView>
@@ -59,13 +78,12 @@ const IdList = props => {
   );
 };
 
-export default IdList;
+export default IDExttendedList;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginBottom: 10,
-    // paddingBottom: 80,
   },
   title: {
     fontSize: 20,
