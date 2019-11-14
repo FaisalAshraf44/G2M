@@ -9,6 +9,7 @@ import CustomHeader from '../Components/Header';
 import GenericButton from '../Components/GenericBtn';
 import IDExtendedList from '../Components/IDExtendedList';
 import IdList from '../Components/IdList';
+import NewNoteModal from '../Components/NewNoteModal';
 import Notes from '../Components/Notes';
 import PhaseCard from '../Components/PhaseCard';
 
@@ -17,11 +18,16 @@ export default class Home extends Component {
     super(props);
     this.state = {
       extendedList: false,
+      newNoteModal: false,
     };
   }
 
   ExtendedList = () => {
     this.setState({extendedList: true});
+  };
+
+  toggleNewNoteModal = () => {
+    this.setState({newNoteModal: !this.state.newNoteModal});
   };
 
   render() {
@@ -42,7 +48,10 @@ export default class Home extends Component {
           <GenericButton title="HELP" />
           <View style={{flexDirection: 'row'}}>
             <View style={{marginRight: 10}}>
-              <GenericButton title="NEW NOTE" />
+              <GenericButton
+                title="NEW NOTE"
+                onPress={this.toggleNewNoteModal}
+              />
             </View>
             <GenericButton
               title="LOGOUT"
@@ -77,6 +86,10 @@ export default class Home extends Component {
                 </View>
               </>,
             ]}
+        <NewNoteModal
+          visible={this.state.newNoteModal}
+          onPress={this.toggleNewNoteModal}
+        />
       </View>
     );
   }

@@ -36,7 +36,8 @@ const IdExtendedListRow = props => {
       <View style={{flex: 0.1}}>
         <Text>X2</Text>
       </View>
-      <TouchableOpacity style={styles.editBtn}>
+
+      <TouchableOpacity style={styles.editBtn} onPress={props.onPress}>
         <Text style={styles.textWhite}>Edit</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.delBtn}>
