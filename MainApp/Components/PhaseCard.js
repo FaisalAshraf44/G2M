@@ -12,7 +12,7 @@ const PhaseCard = props => {
       <View>
         <View style={styles.row}>
           <Text style={{alignSelf: 'flex-end'}}>PHASE 1</Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={props.onPress}>
             <Icon
               name="arrow-right-drop-circle"
               type="material-community"

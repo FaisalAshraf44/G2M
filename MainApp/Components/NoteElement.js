@@ -4,7 +4,14 @@ import React from 'react';
 
 const NoteElement = props => {
   return (
-    <View style={[styles.container, {backgroundColor: props.color}]}>
+    <View
+      style={[
+        styles.container,
+        {
+          backgroundColor: props.color,
+          borderColor: props.selected ? 'black' : 'transparent',
+        },
+      ]}>
       <Text style={{fontSize: 12}}>Remember to collect patch data from it</Text>
       <View
         style={{
@@ -31,6 +38,8 @@ const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 16,
     paddingVertical: 10,
+    borderWidth: 1,
+    marginTop: 5,
   },
   row: {
     flexDirection: 'row',

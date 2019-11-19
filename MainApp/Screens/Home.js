@@ -12,6 +12,7 @@ import IdList from '../Components/IdList';
 import NewNoteModal from '../Components/NewNoteModal';
 import Notes from '../Components/Notes';
 import PhaseCard from '../Components/PhaseCard';
+import PhaseScreen from './PhaseScreen';
 
 export default class Home extends Component {
   constructor(props) {
@@ -19,6 +20,7 @@ export default class Home extends Component {
     this.state = {
       extendedList: false,
       newNoteModal: false,
+      phaseDetail: false,
     };
   }
 
@@ -28,6 +30,10 @@ export default class Home extends Component {
 
   toggleNewNoteModal = () => {
     this.setState({newNoteModal: !this.state.newNoteModal});
+  };
+
+  PhaseDetail = () => {
+    this.setState({phaseDetail: !this.state.phaseDetail});
   };
 
   render() {
@@ -72,19 +78,36 @@ export default class Home extends Component {
               </View>,
             ]
           : [
-              <>
-                <View style={styles.phaseCardsContainer}>
-                  <PhaseCard title={'Furniture, IT and equipment'} />
-                  <PhaseCard title={'Logistics and tenders'} />
-                  <PhaseCard title={'Relocation finale'} />
-                </View>
-                <View style={{flexDirection: 'row', flex: 0.59}}>
-                  <View style={{width: '66.7%'}}>
-                    <IdList onPress={this.ExtendedList} />
-                  </View>
-                  <Notes />
-                </View>
-              </>,
+              this.state.phaseDetail
+                ? [
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        flex: 1,
+                        position: 'absolute',
+                        marginTop: hp(12),
+                      }}>
+                      <PhaseScreen onPress={this.PhaseDetail} />
+                    </View>,
+                  ]
+                : [
+                    <>
+                      <View style={styles.phaseCardsContainer}>
+                        <PhaseCard
+                          title={'Furniture, IT and equipment'}
+                          onPress={this.PhaseDetail}
+                        />
+                        <PhaseCard title={'Logistics and tenders'} />
+                        <PhaseCard title={'Relocation finale'} />
+                      </View>
+                      <View style={{flexDirection: 'row', flex: 0.59}}>
+                        <View style={{width: '66.7%'}}>
+                          <IdList onPress={this.ExtendedList} />
+                        </View>
+                        <Notes />
+                      </View>
+                    </>,
+                  ],
             ]}
         <NewNoteModal
           visible={this.state.newNoteModal}
