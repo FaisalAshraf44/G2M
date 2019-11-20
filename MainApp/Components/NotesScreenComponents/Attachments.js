@@ -1,9 +1,10 @@
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from '../../Helpers/Responsive';
 
+import AttachmentModal from './AttachmentModal';
 import {Card} from 'react-native-elements';
 import {Icon} from 'react-native-elements';
 import React from 'react';
@@ -11,8 +12,14 @@ import React from 'react';
 class Attachments extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      attachmentModal: false,
+    };
   }
+
+  toggleAttachmentModal = () => {
+    this.setState({attachmentModal: !this.state.attachmentModal});
+  };
 
   render() {
     return (
@@ -34,6 +41,31 @@ class Attachments extends React.Component {
             />
           </TouchableOpacity>
         </View>
+
+        <Text style={{fontSize: 12, color: 'grey'}}>Patch list v.1.pdf</Text>
+        <TouchableOpacity onPress={this.toggleAttachmentModal}>
+          <View style={{borderWidth: 1, borderColor: 'black'}}>
+            <Image
+              source={require('../../assets/images/placeholder.png')}
+              style={{width: 260, height: 200}}
+            />
+          </View>
+        </TouchableOpacity>
+
+        <Text style={{fontSize: 12, color: 'grey'}}>Patch list v.1.pdf</Text>
+        <TouchableOpacity onPress={this.toggleAttachmentModal}>
+          <View style={{borderWidth: 1, borderColor: 'black'}}>
+            <Image
+              source={require('../../assets/images/placeholder.png')}
+              style={{width: 260, height: 200}}
+            />
+          </View>
+        </TouchableOpacity>
+
+        <AttachmentModal
+          visible={this.state.attachmentModal}
+          onPress={this.toggleAttachmentModal}
+        />
       </Card>
     );
   }
