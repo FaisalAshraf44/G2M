@@ -9,7 +9,7 @@ import {
 
 import {Card} from 'react-native-elements';
 import IdListRow from './IdListRow';
-import {heightPercentageToDP as hp} from '../Helpers/Responsive';
+import {heightPercentageToDP as hp} from '../../Helpers/Responsive';
 
 const listItems = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}];
 

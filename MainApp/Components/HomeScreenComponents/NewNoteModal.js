@@ -8,13 +8,13 @@ import {
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
-} from '../Helpers/Responsive';
+} from '../../Helpers/Responsive';
 
 import {Icon} from 'react-native-elements';
 import Modal from 'react-native-modal';
 import React from 'react';
 
-const AddLineModal = props => {
+const NewNoteModal = props => {
   return (
     <Modal
       isVisible={props.visible}
@@ -28,7 +28,7 @@ const AddLineModal = props => {
     >
       <View style={{alignSelf: 'center'}}>
         <View style={styles.popUpTop}>
-          <Text style={styles.title}>Add line</Text>
+          <Text style={styles.title}>New note</Text>
           <View style={{width: wp(25)}}></View>
 
           <TouchableOpacity
@@ -39,79 +39,45 @@ const AddLineModal = props => {
         </View>
 
         <View style={styles.popUpContainer}>
+          <TextInput
+            style={[styles.textInput, {width: wp(57), height: wp(12)}]}
+            onChangeText={text => this.setState({email: text})}
+            multiline={true}
+          />
+        </View>
+
+        <View style={styles.popUpContainer}>
           <View>
-            <Text style={styles.label}>Name</Text>
+            <Text style={styles.label}>Deadline</Text>
             <TextInput
-              style={[styles.textInput, {width: wp(20)}]}
+              style={[styles.textInput, {width: wp(14)}]}
               onChangeText={text => this.setState({email: text})}
             />
           </View>
           <View style={{marginLeft: 20}}>
-            <Text style={styles.label}>Unique ID</Text>
+            <Text style={styles.label}>Responsible</Text>
             <TextInput
-              style={[styles.textInput, {width: wp(6)}]}
+              style={[styles.textInput, {width: wp(14)}]}
               onChangeText={text => this.setState({email: text})}
             />
           </View>
+          <View style={{marginLeft: 20}}>
+            <Text style={styles.label}>Attach a file</Text>
+            <TextInput
+              style={[styles.textInput, {width: wp(11)}]}
+              onChangeText={text => this.setState({email: text})}
+            />
+          </View>
+          <TouchableOpacity style={styles.browseBtn}>
+            <Text style={{color: 'white', fontSize: 12}}>Browse</Text>
+          </TouchableOpacity>
         </View>
         <View style={styles.popUpContainer}>
           <View>
-            <Text style={styles.label}>Building</Text>
-            <TextInput
-              style={[styles.textInput, {width: wp(11)}]}
-              onChangeText={text => this.setState({email: text})}
-            />
-          </View>
-          <View style={{marginLeft: 20}}>
-            <Text style={styles.label}>Floor</Text>
-            <TextInput
-              style={[styles.textInput, {width: wp(11)}]}
-              onChangeText={text => this.setState({email: text})}
-            />
-          </View>
-          <View style={{marginLeft: 20}}>
-            <Text style={styles.label}>Room</Text>
-            <TextInput
-              style={[styles.textInput, {width: wp(11)}]}
-              onChangeText={text => this.setState({email: text})}
-            />
-          </View>
-          <View style={{marginLeft: 20}}>
-            <Text style={styles.label}>Grid</Text>
-            <TextInput
-              style={[styles.textInput, {width: wp(11)}]}
-              onChangeText={text => this.setState({email: text})}
-            />
-          </View>
-        </View>
-        <View style={styles.popUpContainer}>
-          <View>
-            <Text style={styles.label}>New building</Text>
-            <TextInput
-              style={[styles.textInput, {width: wp(11)}]}
-              onChangeText={text => this.setState({email: text})}
-            />
-          </View>
-          <View style={{marginLeft: 20}}>
-            <Text style={styles.label}>New floor</Text>
-            <TextInput
-              style={[styles.textInput, {width: wp(11)}]}
-              onChangeText={text => this.setState({email: text})}
-            />
-          </View>
-          <View style={{marginLeft: 20}}>
-            <Text style={styles.label}>New room</Text>
-            <TextInput
-              style={[styles.textInput, {width: wp(11)}]}
-              onChangeText={text => this.setState({email: text})}
-            />
-          </View>
-          <View style={{marginLeft: 20}}>
-            <Text style={styles.label}>New grid</Text>
-            <TextInput
-              style={[styles.textInput, {width: wp(11)}]}
-              onChangeText={text => this.setState({email: text})}
-            />
+            <Text style={[styles.label, {marginTop: 10}]}>Attach files:</Text>
+            <Text style={{fontSize: 12, color: 'grey'}}>
+              Patch list v.1.pdf
+            </Text>
           </View>
         </View>
         <View style={[styles.popUpContainer, {justifyContent: 'flex-end'}]}>
@@ -124,7 +90,7 @@ const AddLineModal = props => {
   );
 };
 
-export default AddLineModal;
+export default NewNoteModal;
 
 const styles = StyleSheet.create({
   popUpContainer: {
@@ -163,6 +129,16 @@ const styles = StyleSheet.create({
     fontSize: 10,
     fontWeight: 'bold',
     color: '#102A43',
+  },
+  browseBtn: {
+    paddingHorizontal: 16,
+    // paddingVertical: 4,
+    backgroundColor: '#102A43',
+    borderRadius: 2,
+    marginTop: 18,
+    marginBottom: 4,
+    marginLeft: -2,
+    justifyContent: 'center',
   },
   listBtn: {
     paddingHorizontal: 12,

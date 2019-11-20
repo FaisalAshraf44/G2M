@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
-import {Card} from 'react-native-elements';
-import IDListSeating from '../Components/PhaseListComponents/IdListSeating';
-import PhaseListing from '../Components/PhaseListing';
+import IDListSeating from '../Components/PhaseScreenComponents/IdListSeating';
+import PhaseListing from '../Components/PhaseScreenComponents/PhaseListing';
 
 export default class PhaseScreen extends Component {
   constructor(props) {

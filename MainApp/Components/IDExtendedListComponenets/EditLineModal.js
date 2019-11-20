@@ -8,7 +8,7 @@ import {
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
-} from '../Helpers/Responsive';
+} from '../../Helpers/Responsive';
 
 import {Icon} from 'react-native-elements';
 import Modal from 'react-native-modal';

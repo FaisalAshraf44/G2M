@@ -8,11 +8,11 @@ import {
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
-} from '../Helpers/Responsive';
+} from '../../Helpers/Responsive';
 
 import {Card} from 'react-native-elements';
 import IdListRow from './IdListRow';
-import NoteElement from './NoteElement';
+import NoteElement from '../NoteElement';
 import React from 'react';
 
 const listItems = [{}, {}, {}];
@@ -28,7 +28,7 @@ const Notes = props => {
           marginBottom: 5,
         }}>
         <Text style={styles.title}>Notes</Text>
-        <TouchableOpacity style={styles.listBtn}>
+        <TouchableOpacity style={styles.listBtn} onPress={props.onPress}>
           <Text style={{color: 'white'}}>ALL NOTES</Text>
         </TouchableOpacity>
       </View>

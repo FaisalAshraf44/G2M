@@ -4,7 +4,7 @@ import {Card, Icon} from 'react-native-elements';
 import React, {Component} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
-import {heightPercentageToDP as hp} from '../Helpers/Responsive';
+import {heightPercentageToDP as hp} from '../../Helpers/Responsive';
 
 const PhaseCard = props => {
   return (

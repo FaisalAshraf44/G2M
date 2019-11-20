@@ -1,6 +1,7 @@
 import {CheckBox, Icon} from 'react-native-elements';
 import {
   Image,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -10,12 +11,26 @@ import {
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
-} from '../Helpers/Responsive';
+} from '../../Helpers/Responsive';
 
 import Modal from 'react-native-modal';
 import React from 'react';
 
-class OrderLabelModal extends React.Component {
+const FAQList = [
+  {qst: 'How do I know how many moving boxes we need?', ans: ''},
+  {qst: 'Why do I need keep inventory over our furniture?', ans: ''},
+  {
+    qst: 'How do I know how many moving boxes we need?',
+    ans:
+      'I understand that the ID list will be locked once I press "ODER" and that the labels produced will be base on the ID list I press "ODER" and that the labels produced will be base on the ID list',
+  },
+  {qst: 'Why do I need keep inventory over our furniture?', ans: ''},
+  {qst: 'How do I know how many moving boxes we need?', ans: ''},
+  {qst: 'Why do I need keep inventory over our furniture?', ans: ''},
+  {qst: 'How do I know how many moving boxes we need?', ans: ''},
+];
+
+class FAQphaseModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -34,7 +49,7 @@ class OrderLabelModal extends React.Component {
         backdropOpacity={0.5}>
         <View style={{alignSelf: 'center'}}>
           <View style={styles.popUpTop}>
-            <Text style={styles.title}>Order labels</Text>
+            <Text style={styles.title}>FAQ</Text>
             <View style={{width: wp(25)}}></View>
 
             <TouchableOpacity
@@ -45,34 +60,22 @@ class OrderLabelModal extends React.Component {
           </View>
 
           <View style={styles.popUpContainer}>
-            <Text style={styles.headingRed}>
-              When ordering labels your ID list gets locked until production has
-              completed
-            </Text>
-          </View>
-          <View style={styles.checkBoxContainer}>
-            <CheckBox
-              checkedIcon={
-                <Image source={require('../assets/icons/checked.png')} />
-              }
-              uncheckedIcon={
-                <Image source={require('../assets/icons/unchecked.png')} />
-              }
-              checked={this.state.checked}
-              onPress={() => this.setState({checked: !this.state.checked})}
-            />
-            <Text style={{marginLeft: -12, color: '#102A43', fontSize: 12}}>
-              I understand that the ID list will be locked once I press "ODER"
-              and that the labels produced will be base on the ID list as it
-            </Text>
-          </View>
-
-          <View style={[styles.popUpContainer, {justifyContent: 'flex-end'}]}>
-            <TouchableOpacity
-              style={styles.OrderLabelBtn}
-              onPress={this.props.onPress}>
-              <Text style={{color: 'white', fontSize: 14}}>ORDER LABELS</Text>
-            </TouchableOpacity>
+            <ScrollView style={{height: hp(50)}}>
+              {FAQList.map((item, key) => {
+                return (
+                  <View
+                    style={[
+                      styles.textRowContainer,
+                      {backgroundColor: key % 2 == 0 ? '#DADADA' : 'white'},
+                    ]}>
+                    <Text style={styles.FAQText}>{item.qst}</Text>
+                    {item.ans != ''
+                      ? [<Text style={styles.ansText}>{item.ans}</Text>]
+                      : []}
+                  </View>
+                );
+              })}
+            </ScrollView>
           </View>
         </View>
       </Modal>
@@ -80,14 +83,24 @@ class OrderLabelModal extends React.Component {
   }
 }
 
-export default OrderLabelModal;
+export default FAQphaseModal;
 
 const styles = StyleSheet.create({
   popUpContainer: {
     width: wp(60),
+    flexDirection: 'column',
+    paddingHorizontal: 16,
+    // paddingVertical: 4,
+    paddingTop: 10,
+    backgroundColor: 'white',
+    borderBottomRightRadius: 4,
+    borderBottomLeftRadius: 4,
+  },
+  popUpContainer1: {
+    width: wp(60),
     flexDirection: 'row',
     paddingHorizontal: 16,
-    paddingVertical: 4,
+    // paddingVertical: 4,
     backgroundColor: 'white',
     borderBottomRightRadius: 4,
     borderBottomLeftRadius: 4,
@@ -117,11 +130,19 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#102A43',
   },
-  headingRed: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: 'red',
-    marginTop: 20,
+  textRowContainer: {
+    width: '100%',
+    paddingHorizontal: 20,
+    paddingVertical: 15,
+    overflow: 'hidden',
+  },
+  FAQText: {
+    fontSize: 12,
+    color: 'black',
+  },
+  ansText: {
+    color: 'grey',
+    fontSize: 10,
   },
   OrderLabelBtn: {
     paddingHorizontal: 20,

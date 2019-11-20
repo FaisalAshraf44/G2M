@@ -9,7 +9,7 @@ import {
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
-} from '../Helpers/Responsive';
+} from '../../Helpers/Responsive';
 
 import AddLineModal from './AddLineModal';
 import {Card} from 'react-native-elements';

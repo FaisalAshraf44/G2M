@@ -6,12 +6,14 @@ import {
 } from '../Helpers/Responsive';
 
 import CustomHeader from '../Components/Header';
-import GenericButton from '../Components/GenericBtn';
-import IDExtendedList from '../Components/IDExtendedList';
-import IdList from '../Components/IdList';
-import NewNoteModal from '../Components/NewNoteModal';
-import Notes from '../Components/Notes';
-import PhaseCard from '../Components/PhaseCard';
+import GenericButton from '../Components/HomeScreenComponents/GenericBtn';
+import HelpModal from '../Components/HomeScreenComponents/HelpModal';
+import IDExtendedList from '../Components/IDExtendedListComponenets/IDExtendedList';
+import IdList from '../Components/HomeScreenComponents/IdList';
+import NewNoteModal from '../Components/HomeScreenComponents/NewNoteModal';
+import Notes from '../Components/HomeScreenComponents/Notes';
+import NotesScreen from './NotesScreen';
+import PhaseCard from '../Components/HomeScreenComponents/PhaseCard';
 import PhaseScreen from './PhaseScreen';
 
 export default class Home extends Component {
@@ -21,6 +23,8 @@ export default class Home extends Component {
       extendedList: false,
       newNoteModal: false,
       phaseDetail: false,
+      helpModal: false,
+      notesDetail: true,
     };
   }
 
@@ -31,9 +35,14 @@ export default class Home extends Component {
   toggleNewNoteModal = () => {
     this.setState({newNoteModal: !this.state.newNoteModal});
   };
-
+  toggleHelpModal = () => {
+    this.setState({helpModal: !this.state.helpModal});
+  };
   PhaseDetail = () => {
     this.setState({phaseDetail: !this.state.phaseDetail});
+  };
+  NotesDetail = () => {
+    this.setState({notesDetail: !this.state.notesDetail});
   };
 
   render() {
@@ -51,7 +60,7 @@ export default class Home extends Component {
             flexDirection: 'row',
             width: '100%',
           }}>
-          <GenericButton title="HELP" />
+          <GenericButton title="HELP" onPress={this.toggleHelpModal} />
           <View style={{flexDirection: 'row'}}>
             <View style={{marginRight: 10}}>
               <GenericButton
@@ -91,27 +100,51 @@ export default class Home extends Component {
                     </View>,
                   ]
                 : [
-                    <>
-                      <View style={styles.phaseCardsContainer}>
-                        <PhaseCard
-                          title={'Furniture, IT and equipment'}
-                          onPress={this.PhaseDetail}
-                        />
-                        <PhaseCard title={'Logistics and tenders'} />
-                        <PhaseCard title={'Relocation finale'} />
-                      </View>
-                      <View style={{flexDirection: 'row', flex: 0.59}}>
-                        <View style={{width: '66.7%'}}>
-                          <IdList onPress={this.ExtendedList} />
-                        </View>
-                        <Notes />
-                      </View>
-                    </>,
+                    this.state.notesDetail
+                      ? [
+                          <View
+                            style={{
+                              flexDirection: 'row',
+                              flex: 1,
+                              position: 'absolute',
+                              marginTop: hp(12),
+                            }}>
+                            <NotesScreen onPress={this.NotesDetail} />
+                          </View>,
+                        ]
+                      : [
+                          <>
+                            <View style={styles.phaseCardsContainer}>
+                              <PhaseCard
+                                title={'Furniture, IT and equipment'}
+                                onPress={this.PhaseDetail}
+                              />
+                              <PhaseCard
+                                title={'Logistics and tenders'}
+                                onPress={this.PhaseDetail}
+                              />
+                              <PhaseCard
+                                title={'Relocation finale'}
+                                onPress={this.PhaseDetail}
+                              />
+                            </View>
+                            <View style={{flexDirection: 'row', flex: 0.59}}>
+                              <View style={{width: '66.7%'}}>
+                                <IdList onPress={this.ExtendedList} />
+                              </View>
+                              <Notes onPress={this.NotesDetail} />
+                            </View>
+                          </>,
+                        ],
                   ],
             ]}
         <NewNoteModal
           visible={this.state.newNoteModal}
           onPress={this.toggleNewNoteModal}
+        />
+        <HelpModal
+          visible={this.state.helpModal}
+          onPress={this.toggleHelpModal}
         />
       </View>
     );
@@ -134,14 +167,3 @@ const styles = StyleSheet.create({
     marginTop: hp(10),
   },
 });
-
-/////////////// extended list ////////
-// <View
-//   style={{
-//     flexDirection: 'row',
-//     flex: 1,
-//     position: 'absolute',
-//     marginTop: hp(12),
-//   }}>
-//   <IDExtendedList />
-// </View>

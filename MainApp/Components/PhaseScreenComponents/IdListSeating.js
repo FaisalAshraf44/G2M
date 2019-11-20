@@ -5,7 +5,7 @@ import {
   widthPercentageToDP as wp,
 } from '../../Helpers/Responsive';
 
-import NoteElement from '../NoteElement';
+import FAQphaseModal from './FAQphaseModal';
 import React from 'react';
 
 const listItems = [{}, {}, {}];
@@ -18,8 +18,14 @@ class IDListSeating extends React.Component {
       label2: false,
       label3: false,
       label4: false,
+
+      phaseFAQmodal: false,
     };
   }
+  togglePhaseFAQmodal = () => {
+    this.setState({phaseFAQmodal: !this.state.phaseFAQmodal});
+  };
+
   render() {
     return (
       <Card containerStyle={styles.container}>
@@ -31,7 +37,9 @@ class IDListSeating extends React.Component {
             marginBottom: 5,
           }}>
           <Text style={styles.title}>ID list & seating</Text>
-          <TouchableOpacity style={styles.listBtn}>
+          <TouchableOpacity
+            style={styles.listBtn}
+            onPress={this.togglePhaseFAQmodal}>
             <Text style={{color: 'white', fontSize: 12}}>FAQ</Text>
           </TouchableOpacity>
         </View>
@@ -123,20 +131,34 @@ class IDListSeating extends React.Component {
           />
           <Text style={styles.checkBoxDescription}>Labels received</Text>
         </View>
-        {/* <Text style={{flexDirection: 'row'}}>
+
+        <View style={{flexDirection: 'row', marginTop: 20}}>
           <Image
-            style={{width: 200, height: 200}}
             source={require('../../assets/images/placeholder.png')}
+            style={{width: 180, height: 180}}
           />
-          I understand that the ID list will be locked once I press "ODER" and
-          that the labels produced will be base on the ID list as it I
-          understand that the ID list will be locked once I press "ODER" and
-          that the labels produced will be base on the ID list as it I
-          understand that the ID list will be locked once I press "ODER" and
-          that the labels produced will be base on the ID list as it I
-          understand that the ID list will be locked once I press "ODER" and
-          that the labels produced will be base on the ID list as it I
-          understand that the ID list will be locked once I press "ODER" and
+          <Text style={{flex: 1, marginLeft: 10}}>
+            I understand that the ID list will be locked once I press "ODER" and
+            that the labels produced will be base on the ID list as it I
+            understand that the ID list will be locked once I press "ODER" and
+            that the labels produced will be base on the ID list as it I
+            understand that the ID list will be locked once I press "ODER" and
+            that the labels produced will be base on the ID list as it I
+            understand that the ID list will be locked once I press "ODER" and
+            that the labels produced will be base on the ID list as it I
+            understand that the ID list will be locked once I press "ODER" and
+            understand that the ID list will be locked once I press "ODER" and
+            that the labels produced will be base on the ID list as it I
+            understand that the ID list will be locked once I press "ODER" and
+            that the labels produced will be base on the ID list as it I
+            understand that the ID list will be locked once I press "ODER" and
+            understand that the ID list will be locked once I press "ODER" and
+            that the labels produced will be base on the ID list as it I that
+            the labels produced will
+          </Text>
+        </View>
+
+        <Text style={{marginTop: 10}}>
           that the labels produced will be base on the ID list as it I
           understand that the ID list will be locked once I press "ODER" and
           that the labels produced will be base on the ID list as it I
@@ -148,19 +170,11 @@ class IDListSeating extends React.Component {
           that the labels produced will be base on the ID list as it I
           understand that the ID list will be locked once I press "ODER" and
           that the labels produced will be base on the ID list as it
-        </Text> */}
-        <Text style={{backgroundColor: 'red'}}>
-          <Image
-            source={require('../../assets/images/placeholder.png')}
-            style={{width: 16, height: 16}}
-          />
-          <Text>
-            {' '}
-            Your past has been in control for far too long. It's time to shift
-            to a higher expression of what you are capable of so you can create
-            the life you want to live.
-          </Text>
         </Text>
+        <FAQphaseModal
+          visible={this.state.phaseFAQmodal}
+          onPress={this.togglePhaseFAQmodal}
+        />
       </Card>
     );
   }

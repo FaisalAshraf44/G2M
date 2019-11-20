@@ -1,7 +1,7 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 import React from 'react';
-import {heightPercentageToDP as hp} from '../Helpers/Responsive';
+import {heightPercentageToDP as hp} from '../../Helpers/Responsive';
 
 const IdExtendedListRow = props => {
   return (

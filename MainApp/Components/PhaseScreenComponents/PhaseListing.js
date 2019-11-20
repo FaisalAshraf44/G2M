@@ -1,12 +1,12 @@
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
-} from '../Helpers/Responsive';
+} from '../../Helpers/Responsive';
 
 import {Card} from 'react-native-elements';
 import {Icon} from 'react-native-elements';
-import IdListRow from './IdListRow';
+import IdListRow from '../HomeScreenComponents/IdListRow';
 import React from 'react';
 
 export const PhaseElement = props => {
