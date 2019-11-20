@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -24,25 +24,25 @@ export default class Home extends Component {
       newNoteModal: false,
       phaseDetail: false,
       helpModal: false,
-      notesDetail: true,
+      notesDetail: false,
     };
   }
 
   ExtendedList = () => {
-    this.setState({extendedList: true});
+    this.setState({ extendedList: true });
   };
 
   toggleNewNoteModal = () => {
-    this.setState({newNoteModal: !this.state.newNoteModal});
+    this.setState({ newNoteModal: !this.state.newNoteModal });
   };
   toggleHelpModal = () => {
-    this.setState({helpModal: !this.state.helpModal});
+    this.setState({ helpModal: !this.state.helpModal });
   };
   PhaseDetail = () => {
-    this.setState({phaseDetail: !this.state.phaseDetail});
+    this.setState({ phaseDetail: !this.state.phaseDetail });
   };
   NotesDetail = () => {
-    this.setState({notesDetail: !this.state.notesDetail});
+    this.setState({ notesDetail: !this.state.notesDetail });
   };
 
   render() {
@@ -61,8 +61,8 @@ export default class Home extends Component {
             width: '100%',
           }}>
           <GenericButton title="HELP" onPress={this.toggleHelpModal} />
-          <View style={{flexDirection: 'row'}}>
-            <View style={{marginRight: 10}}>
+          <View style={{ flexDirection: 'row' }}>
+            <View style={{ marginRight: 10 }}>
               <GenericButton
                 title="NEW NOTE"
                 onPress={this.toggleNewNoteModal}
@@ -76,19 +76,32 @@ export default class Home extends Component {
         </View>
         {this.state.extendedList
           ? [
-              <View
-                style={{
-                  flexDirection: 'row',
-                  flex: 1,
-                  position: 'absolute',
-                  marginTop: hp(12),
-                }}>
-                <IDExtendedList />
-              </View>,
-            ]
+            <View
+              style={{
+                flexDirection: 'row',
+                flex: 1,
+                position: 'absolute',
+                marginTop: hp(12),
+              }}>
+              <IDExtendedList />
+            </View>,
+          ]
           : [
-              this.state.phaseDetail
-                ? [
+            this.state.phaseDetail
+              ? [
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    flex: 1,
+                    position: 'absolute',
+                    marginTop: hp(12),
+                  }}>
+                  <PhaseScreen onPress={this.PhaseDetail} />
+                </View>,
+              ]
+              : [
+                this.state.notesDetail
+                  ? [
                     <View
                       style={{
                         flexDirection: 'row',
@@ -96,48 +109,35 @@ export default class Home extends Component {
                         position: 'absolute',
                         marginTop: hp(12),
                       }}>
-                      <PhaseScreen onPress={this.PhaseDetail} />
+                      <NotesScreen onPress={this.NotesDetail} />
                     </View>,
                   ]
-                : [
-                    this.state.notesDetail
-                      ? [
-                          <View
-                            style={{
-                              flexDirection: 'row',
-                              flex: 1,
-                              position: 'absolute',
-                              marginTop: hp(12),
-                            }}>
-                            <NotesScreen onPress={this.NotesDetail} />
-                          </View>,
-                        ]
-                      : [
-                          <>
-                            <View style={styles.phaseCardsContainer}>
-                              <PhaseCard
-                                title={'Furniture, IT and equipment'}
-                                onPress={this.PhaseDetail}
-                              />
-                              <PhaseCard
-                                title={'Logistics and tenders'}
-                                onPress={this.PhaseDetail}
-                              />
-                              <PhaseCard
-                                title={'Relocation finale'}
-                                onPress={this.PhaseDetail}
-                              />
-                            </View>
-                            <View style={{flexDirection: 'row', flex: 0.59}}>
-                              <View style={{width: '66.7%'}}>
-                                <IdList onPress={this.ExtendedList} />
-                              </View>
-                              <Notes onPress={this.NotesDetail} />
-                            </View>
-                          </>,
-                        ],
+                  : [
+                    <>
+                      <View style={styles.phaseCardsContainer}>
+                        <PhaseCard
+                          title={'Furniture, IT and equipment'}
+                          onPress={this.PhaseDetail}
+                        />
+                        <PhaseCard
+                          title={'Logistics and tenders'}
+                          onPress={this.PhaseDetail}
+                        />
+                        <PhaseCard
+                          title={'Relocation finale'}
+                          onPress={this.PhaseDetail}
+                        />
+                      </View>
+                      <View style={{ flexDirection: 'row', flex: 0.59 }}>
+                        <View style={{ width: '66.7%' }}>
+                          <IdList onPress={this.ExtendedList} />
+                        </View>
+                        <Notes onPress={this.NotesDetail} />
+                      </View>
+                    </>,
                   ],
-            ]}
+              ],
+          ]}
         <NewNoteModal
           visible={this.state.newNoteModal}
           onPress={this.toggleNewNoteModal}

@@ -12,22 +12,22 @@ import {
   widthPercentageToDP as wp,
 } from '../../Helpers/Responsive';
 
-import {Icon} from 'react-native-elements';
+import { Icon } from 'react-native-elements';
 import Modal from 'react-native-modal';
 import React from 'react';
 
 const FAQList = [
-  {qst: 'How do I know how many moving boxes we need?', ans: ''},
-  {qst: 'Why do I need keep inventory over our furniture?', ans: ''},
+  { qst: 'How do I know how many moving boxes we need?', ans: '' },
+  { qst: 'Why do I need keep inventory over our furniture?', ans: '' },
   {
     qst: 'How do I know how many moving boxes we need?',
     ans:
       'I understand that the ID list will be locked once I press "ODER" and that the labels produced will be base on the ID list I press "ODER" and that the labels produced will be base on the ID list',
   },
-  {qst: 'Why do I need keep inventory over our furniture?', ans: ''},
-  {qst: 'How do I know how many moving boxes we need?', ans: ''},
-  {qst: 'Why do I need keep inventory over our furniture?', ans: ''},
-  {qst: 'How do I know how many moving boxes we need?', ans: ''},
+  { qst: 'Why do I need keep inventory over our furniture?', ans: '' },
+  { qst: 'How do I know how many moving boxes we need?', ans: '' },
+  { qst: 'Why do I need keep inventory over our furniture?', ans: '' },
+  { qst: 'How do I know how many moving boxes we need?', ans: '' },
 ];
 
 const HelpModal = props => {
@@ -40,7 +40,7 @@ const HelpModal = props => {
       animationInTiming={250}
       animationOutTiming={250}
       backdropOpacity={0.5}>
-      <View style={{alignSelf: 'center'}}>
+      <View style={{ alignSelf: 'center' }}>
         <View style={styles.popUpTop}>
           <Text style={styles.title}>Help & support</Text>
           <View
@@ -52,20 +52,20 @@ const HelpModal = props => {
             <Text style={styles.title}>FAQ</Text>
             <TouchableOpacity
               onPress={props.onPress}
-              style={{marginRight: wp(1)}}>
+              style={{ marginRight: wp(1) }}>
               <Icon name="close" size={30} color={'grey'} />
             </TouchableOpacity>
           </View>
         </View>
 
         <View style={styles.popUpContainer}>
-          <View style={{width: '25%'}}>
+          <View style={{ width: '25%' }}>
             <View>
               <Text style={styles.label}>Attach a file</Text>
               <View
-                style={{borderWidth: 1, borderColor: 'black', width: wp(14)}}>
+                style={{ borderWidth: 1, borderColor: 'black', width: wp(14) }}>
                 <Picker
-                  style={{width: wp(14), borderWidth: 2, borderColor: 'black'}}>
+                  style={{ height: 40, width: wp(14), borderWidth: 2, borderColor: 'black' }}>
                   <Picker.Item label="Java" value="java" />
                   <Picker.Item label="JavaScript" value="js" />
                 </Picker>
@@ -74,37 +74,37 @@ const HelpModal = props => {
             <View>
               <Text style={styles.label}>Your question / request</Text>
               <TextInput
-                style={[styles.textInput, {width: wp(14), height: wp(12)}]}
-                onChangeText={text => this.setState({email: text})}
+                style={[styles.textInput, { width: wp(14), height: wp(12) }]}
+                onChangeText={text => this.setState({ email: text })}
                 multiline={true}
               />
             </View>
             <View>
               <Text style={styles.label}>Attach a file</Text>
-              <View style={{flexDirection: 'row', width: wp(14)}}>
+              <View style={{ flexDirection: 'row', width: wp(14) }}>
                 <TextInput
-                  style={[styles.textInput, {width: wp(8.5)}]}
-                  onChangeText={text => this.setState({email: text})}
+                  style={[styles.textInput, { width: wp(8.5) }]}
+                  onChangeText={text => this.setState({ email: text })}
                 />
                 <TouchableOpacity style={styles.browseBtn}>
-                  <Text style={{color: 'white', fontSize: 12}}>Browse</Text>
+                  <Text style={{ color: 'white', fontSize: 12 }}>Browse</Text>
                 </TouchableOpacity>
               </View>
             </View>
-            <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
+            <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
               <TouchableOpacity style={styles.listBtn} onPress={props.onPress}>
-                <Text style={{color: 'white', fontSize: 12}}>SEND</Text>
+                <Text style={{ color: 'white', fontSize: 12 }}>SEND</Text>
               </TouchableOpacity>
             </View>
           </View>
-          <View style={{marginTop: 22, width: '70%', marginLeft: 20}}>
-            <ScrollView style={{height: hp(50)}}>
+          <View style={{ marginTop: 22, width: '70%', marginLeft: 20 }}>
+            <ScrollView style={{ height: hp(50) }}>
               {FAQList.map((item, key) => {
                 return (
                   <View
                     style={[
                       styles.textRowContainer,
-                      {backgroundColor: key % 2 == 0 ? '#DADADA' : 'white'},
+                      { backgroundColor: key % 2 == 0 ? '#DADADA' : 'white' },
                     ]}>
                     <Text style={styles.FAQText}>{item.qst}</Text>
                     {item.ans != ''
