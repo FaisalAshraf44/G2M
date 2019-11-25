@@ -44,20 +44,24 @@ class Attachments extends React.Component {
 
         <Text style={{fontSize: 12, color: 'grey'}}>Patch list v.1.pdf</Text>
         <TouchableOpacity onPress={this.toggleAttachmentModal}>
-          <View style={{borderWidth: 1, borderColor: 'black'}}>
+          <View
+            style={{borderWidth: 1, borderColor: 'black', overflow: 'hidden'}}>
             <Image
               source={require('../../assets/images/placeholder.png')}
               style={{width: 260, height: 200}}
+              resizeMode="contain"
             />
           </View>
         </TouchableOpacity>
 
         <Text style={{fontSize: 12, color: 'grey'}}>Patch list v.1.pdf</Text>
         <TouchableOpacity onPress={this.toggleAttachmentModal}>
-          <View style={{borderWidth: 1, borderColor: 'black'}}>
+          <View
+            style={{borderWidth: 1, borderColor: 'black', overflow: 'hidden'}}>
             <Image
               source={require('../../assets/images/placeholder.png')}
               style={{width: 260, height: 200}}
+              resizeMode="contain"
             />
           </View>
         </TouchableOpacity>
