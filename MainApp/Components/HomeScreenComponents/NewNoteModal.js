@@ -13,7 +13,30 @@ import {
 import {Icon} from 'react-native-elements';
 import Modal from 'react-native-modal';
 import React from 'react';
+import DocumentPicker from 'react-native-document-picker';
 
+const AttachFile = async () => {
+  alert('hello');
+  // return(
+  try {
+    const res = await DocumentPicker.pick({
+      type: [DocumentPicker.types.allFiles],
+    });
+    console.log(
+      res.uri,
+      res.type, // mime type
+      res.name,
+      res.size,
+    );
+  } catch (err) {
+    if (DocumentPicker.isCancel(err)) {
+      // User cancelled the picker, exit any dialogs or menus and move on
+    } else {
+      throw err;
+    }
+  }
+  // )
+};
 const NewNoteModal = props => {
   return (
     <Modal
@@ -68,7 +91,7 @@ const NewNoteModal = props => {
               onChangeText={text => this.setState({email: text})}
             />
           </View>
-          <TouchableOpacity style={styles.browseBtn}>
+          <TouchableOpacity style={styles.browseBtn} onPress={() => AttachFile}>
             <Text style={{color: 'white', fontSize: 12}}>Browse</Text>
           </TouchableOpacity>
         </View>
